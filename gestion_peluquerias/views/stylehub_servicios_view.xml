@@ -1,0 +1,53 @@
+<odoo>
+
+    <!-- NIVEL 1: Menu raiz principal del modulo de gestión de peluquería (entrada al módulo Stylehub) -->
+    <menuitem id="menu_stylehub_root" name="Stylehub" sequence="10"/>
+
+    <!-- NIVEL 2: Submenu de Servicios (categoría intermedia que agrupa todas las opciones de servicios) -->
+    <menuitem id="menu_stylehub_servicios_root" name="Servicios" parent="menu_stylehub_root" sequence="10"/>
+
+    <!-- ACCIÓN: Define la ventana de acción que abre las vistas de servicios con los modos: lista, formulario y kanban -->
+    <record id="action_stylehub_servicios" model="ir.actions.act_window">
+        <field name="name">Servicios</field>
+        <field name="res_model">stylehub.servicios</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    
+    <!-- NIVEL 3: Opción final del menú que ejecuta la acción para ver el listado de servicios disponibles -->
+    <menuitem id="menu_stylehub_servicios" name="Listado de servicios"
+              parent="menu_stylehub_servicios_root"
+              action="action_stylehub_servicios"
+              sequence="10"/>
+
+    <!-- VISTA LISTA: Presenta todos los servicios en formato tabla con columnas de nombre, precio base y duración -->
+    <record id="view_stylehub_servicios_list" model="ir.ui.view">
+        <field name="name">stylehub.servicios.list</field>
+        <field name="model">stylehub.servicios</field>
+        <field name="arch" type="xml">
+            <list string="Servicios">
+                <field name="nombre"/>
+                <field name="precio_base"/>
+                <field name="duracion"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORMULARIO: Permite ver y editar los detalles completos de un servicio individual (nombre, precio y duración) -->
+    <record id="view_stylehub_servicios_form" model="ir.ui.view">
+        <field name="name">stylehub.servicios.form</field>
+        <field name="model">stylehub.servicios</field>
+        <field name="arch" type="xml">
+            <form string="Servicio">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="precio_base"/>
+                        <field name="duracion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
