@@ -1,4 +1,4 @@
-from Odoo import models, fields
+from odoo import models, fields
 
 class stylehubEstilistas(models.Model):
 
@@ -7,8 +7,9 @@ class stylehubEstilistas(models.Model):
 
     nombre = fields.Char(string="Nombre", required=True)
     activo = fields.Boolean(string="Activo", default=True)
+    # permite ver las citas del estilista desde su formulario
     cita_ids = fields.One2many(
-        comodel_name="gestion_peluquerias.cita",
+        comodel_name="stylehub.citas",
         inverse_name="estilista_id",
         string="Citas"
     )

@@ -1,7 +1,6 @@
-# gestion_peluquerias/models/cita_linea.py
 from odoo import models, fields, api
 
-#este modelo es necesario para guardar los servicios individuales de cada cita ya que si se utiliza servicios 
+#este modelo hace falta para guardar los servicios individuales de cada cita ya que si se utiliza servicios 
 #con un many2many no se pueden guardar datos adicionales como el precio o la duracion de cada servicio en la cita
 class CitasLinea(models.Model):
     _name = "stylehub.citas_linea"
@@ -22,7 +21,9 @@ class CitasLinea(models.Model):
         comodel_name="stylehub.servicios",
         string="Servicio",
         required=True,
+        domain=[("activo", "=", True)],
     )
+
 
     # guardamos los datos de la lista individual de servicios
     duracion_horas = fields.Float(string="Duracion (horas)", default=0.0)

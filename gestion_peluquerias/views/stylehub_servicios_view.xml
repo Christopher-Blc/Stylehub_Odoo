@@ -1,12 +1,12 @@
 <odoo>
 
-    <!-- NIVEL 1: Menu raiz principal del modulo de gestión de peluquería (entrada al módulo Stylehub) -->
+    <!-- nivel 1,  Menu raiz principal del modulo de gestión de peluquería (entrada al módulo Stylehub) -->
     <menuitem id="menu_stylehub_root" name="Stylehub" sequence="10"/>
 
-    <!-- NIVEL 2: Submenu de Servicios (categoría intermedia que agrupa todas las opciones de servicios) -->
+    <!-- nivel 2, Submenu de Servicios (categoría intermedia que agrupa todas las opciones de servicios) -->
     <menuitem id="menu_stylehub_servicios_root" name="Servicios" parent="menu_stylehub_root" sequence="10"/>
 
-    <!-- ACCIÓN: Define la ventana de acción que abre las vistas de servicios con los modos: lista, formulario y kanban -->
+    <!-- accion que Define la ventana de acción que abre las vistas de servicios con los modos: lista, formulario y kanban -->
     <record id="action_stylehub_servicios" model="ir.actions.act_window">
         <field name="name">Servicios</field>
         <field name="res_model">stylehub.servicios</field>
@@ -14,7 +14,7 @@
     </record>
 
     
-    <!-- NIVEL 3: Opción final del menú que ejecuta la acción para ver el listado de servicios disponibles -->
+    <!-- nivel 3,  Opción final del menú que ejecuta la acción para ver el listado de servicios disponibles -->
     <menuitem id="menu_stylehub_servicios" name="Listado de servicios"
               parent="menu_stylehub_servicios_root"
               action="action_stylehub_servicios"
