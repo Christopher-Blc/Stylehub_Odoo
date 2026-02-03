@@ -22,11 +22,11 @@ class StylehubCitas(models.Model):
         required=True,
     )
 
-    #POR COMPLETAR!! -> completar cuando se integre el modulo de clienetes de odoo
-    # dejo esto como lo normal en Odoo para cliente, asi no te quedas bloqueado
+    #relacion con el cliente de la bbdd de odoo , el modelo es res_partner
     cliente_id = fields.Many2one(
-        comodel_name="res.partner",
+        "res.partner",
         string="Cliente",
+        required=True
     )
 
     estilista_id = fields.Many2one(
@@ -81,33 +81,38 @@ class StylehubCitas(models.Model):
             else:
                 cita.fin_fecha_hora = False
 
-
+    #acciones para cambiar el estado de la cita
     def action_confirm(self):
         for cita in self:
             if not cita.linea_servicio_ids:
                 raise ValidationError("No puedes confirmar una cita sin servicios.")
             cita.state = "confirmed"
 
+    #accion para marcar la cita como realizada que se gastara en un boton 
     def action_done(self):
         for cita in self:
             if cita.state == "cancelled":
                 raise ValidationError("No puedes marcar como realizada una cita cancelada.")
             cita.state = "done"
 
+    #accion para cancelar la cita
     def action_cancel(self):
         self.write({"state": "cancelled"})
 
+    #accion para volver a poner la cita en borrador
     def action_set_draft(self):
         self.write({"state": "draft"})
 
+    #validacion para que no se solapen las citas de un mismo estilista
     @api.constrains("estilista_id", "inicio_fecha_hora", "fin_fecha_hora", "state")
     def _check_solape_estilista(self):
         for cita in self:
+            #si no hay estilista o fechas no hacemos la comprobacion
             if not cita.estilista_id or not cita.inicio_fecha_hora or not cita.fin_fecha_hora:
                 continue
             if cita.state == "cancelled":
                 continue
-
+            # buscamos citas del mismo estilista que se solapen en el tiempo
             domain = [
                 ("id", "!=", cita.id),
                 ("estilista_id", "=", cita.estilista_id.id),
@@ -115,5 +120,6 @@ class StylehubCitas(models.Model):
                 ("inicio_fecha_hora", "<", cita.fin_fecha_hora),
                 ("fin_fecha_hora", ">", cita.inicio_fecha_hora),
             ]
+            #si encontramos alguna cita que cumple esas condiciones, lanzamos un error
             if self.search_count(domain):
                 raise ValidationError("El estilista ya tiene una cita solapada en ese horario.")

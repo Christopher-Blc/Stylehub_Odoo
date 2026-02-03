@@ -1,0 +1,42 @@
+<odoo> 
+
+    <!-- Elemento raiz del menu principal de Stylehub -->
+    <menuitem id="menu_stylehub_root" name="Stylehub" sequence="10"/>
+
+    <!-- Desplegable catalogo -->
+    <menuitem id="menu_stylehub_catalogo" name="Catalogo"
+              parent="menu_stylehub_root"
+              sequence="10"/>
+
+    <!-- texto "servicios" en el desplegabe" -->
+    <menuitem id="menu_stylehub_servicios_root" name="Servicios"
+              parent="menu_stylehub_catalogo"
+              sequence="10"/>
+
+    <!-- opcion en el menu "Listado de servicios" que ejecuta la accion que esta arriba de este comentario -->
+    <menuitem id="menu_stylehub_servicios" name="Listado de servicios"
+              parent="menu_stylehub_servicios_root"
+              action="action_stylehub_servicios"
+              sequence="10"/>
+
+    <!-- texto "estilistas" en el desplegabe" -->
+    <menuitem id="menu_stylehub_estilistas_root" name="Estilistas"
+              parent="menu_stylehub_catalogo"
+              sequence="20"/>
+
+    <!-- opcion en el menu "Listado de estilistas" que ejecuta la accion que esta arriba de este comentario -->
+    <menuitem id="menu_stylehub_estilistas" name="Listado de estilistas"
+              parent="menu_stylehub_estilistas_root"
+              action="action_stylehub_estilistas"
+              sequence="10"/>
+
+
+    <!-- texto "clientes" en el desplegabe" -->
+    <menuitem id="menu_stylehub_clientes_root" name="Clientes"
+              parent="menu_stylehub_catalogo" sequence="30"/>
+
+    <menuitem id="menu_stylehub_clientes" name="Listado de clientes"
+              parent="menu_stylehub_clientes_root"
+              action="action_stylehub_clientes" sequence="10"/>
+
+</odoo>

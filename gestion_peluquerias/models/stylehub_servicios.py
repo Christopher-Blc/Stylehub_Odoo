@@ -14,6 +14,7 @@ class StylehubServicios(models.Model):
     # para ocultar el servicio sin tener que borrarlo
     activo = fields.Boolean(string="Activo", default=True)
 
+
     # validaciones basicas para que no haya valores raros
     @api.constrains("precio_base", "duracion_horas")
     def _check_valores(self):

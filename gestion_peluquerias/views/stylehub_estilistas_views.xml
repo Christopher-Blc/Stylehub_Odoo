@@ -1,0 +1,51 @@
+<odoo>
+
+    <!-- accion que abre estilistas en lista y formulario -->
+    <record id="action_stylehub_estilistas" model="ir.actions.act_window">
+        <field name="name">Estilistas</field>
+        <field name="res_model">stylehub.estilistas</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- lista de estilistas -->
+    <record id="view_stylehub_estilistas_list" model="ir.ui.view">
+        <field name="name">stylehub.estilistas.list</field>
+        <field name="model">stylehub.estilistas</field>
+        <field name="arch" type="xml">
+            <list string="Estilistas">
+                <field name="nombre"/>
+                <field name="activo"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- form de editar estilista -->
+    <record id="view_stylehub_estilistas_form" model="ir.ui.view">
+        <field name="name">stylehub.estilistas.form</field>
+        <field name="model">stylehub.estilistas</field>
+        <field name="arch" type="xml">
+            <form string="Estilista">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="activo"/>
+                    </group>
+
+                    <!-- Ver sus citas desde aqui -->
+                    <group string="Citas">
+                        <field name="cita_ids" readonly="1">
+                            <list>
+                                <field name="cita"/>
+                                <field name="inicio_fecha_hora"/>
+                                <field name="fin_fecha_hora"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
