@@ -26,12 +26,13 @@ class CitasLinea(models.Model):
 
 
     # guardamos los datos de la lista individual de servicios
+    # Se rellenan al elegir servicio, pero se pueden editar
     duracion_horas = fields.Float(string="Duracion (horas)", default=0.0)
     precio_unitario = fields.Float(string="Precio", default=0.0)
     subtotal = fields.Float(string="Subtotal", compute="_compute_subtotal", store=True)
 
 
-    @api.depends("precio_unitario")
+    @api.depends( "precio_unitario")
     def _compute_subtotal(self):
         for line in self:
             line.subtotal = line.precio_unitario or 0.0

@@ -5,6 +5,7 @@ class StylehubServicios(models.Model):
 
     _name = "stylehub.servicios"
     _description = "Servicios para la peluqueria como corte caballero etc , incluyendo el precio y la duracion."
+    _rec_name = "nombre"#para que salga el nombre en vez del stylehub.servicios 1
 
     nombre = fields.Char(string="Nombre", required=True)
     precio_base = fields.Float(string="Precio base", required=True)

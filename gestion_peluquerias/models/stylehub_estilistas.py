@@ -4,6 +4,7 @@ class stylehubEstilistas(models.Model):
 
     _name = "stylehub.estilistas"
     _description = "Estilistas que trabajan en la peluqueria."
+    _rec_name = "nombre"#para que salga el nombre en vez del stylehub.estilistas 1 
 
     nombre = fields.Char(string="Nombre", required=True)
     activo = fields.Boolean(string="Activo", default=True)

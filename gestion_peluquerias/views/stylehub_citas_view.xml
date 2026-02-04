@@ -1,0 +1,133 @@
+<odoo>
+
+    <!-- accion -->
+    <record id="action_stylehub_citas" model="ir.actions.act_window">
+        <field name="name">Citas</field>
+        <field name="res_model">stylehub.citas</field>
+        <field name="view_mode">calendar,kanban,list,form</field>
+    </record>
+
+    <!-- vista lista -->
+    <record id="view_stylehub_citas_list" model="ir.ui.view">
+        <field name="name">stylehub.citas.list</field>
+        <field name="model">stylehub.citas</field>
+        <field name="arch" type="xml">
+            <list string="Citas">
+                <field name="cita"/>
+                <field name="cliente_id"/>
+                <field name="estilista_id"/>
+                <field name="inicio_fecha_hora"/>
+                <field name="fin_fecha_hora"/>
+                <field name="duracion_total"/>
+                <field name="precio_total"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- vista formulario -->
+    <record id="view_stylehub_citas_form" model="ir.ui.view">
+        <field name="name">stylehub.citas.form</field>
+        <field name="model">stylehub.citas</field>
+        <field name="arch" type="xml">
+            <form string="Cita">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,done,cancelled"/>
+
+                    <button name="action_confirm" type="object" string="Confirmar"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_done" type="object" string="Marcar como realizada"
+                            class="btn-success"
+                            invisible="state not in ('confirmed')"/>
+
+                    <button name="action_cancel" type="object" string="Cancelar"
+                            class="btn-secondary"
+                            invisible="state in ('cancelled','done')"/>
+
+                    <button name="action_set_draft" type="object" string="Volver a borrador"
+                            invisible="state != 'cancelled'"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="cita" placeholder="Ej: Cita Juan - 10:30"/>
+                            <field name="cliente_id"/>
+                            <field name="estilista_id"/>
+                        </group>
+                        <group>
+                            <field name="inicio_fecha_hora"/>
+                            <field name="fin_fecha_hora" readonly="1"/>
+                            <field name="duracion_total" readonly="1"/>
+                            <field name="precio_total" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Servicios">
+                            <field name="linea_servicio_ids">
+                                <list editable="bottom" string="Servicios">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="servicio_id"/>
+                                    <field name="duracion_horas"/>
+                                    <field name="precio_unitario"/>
+                                    <field name="subtotal" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- vista calendario -->
+    <record id="view_stylehub_citas_calendar" model="ir.ui.view">
+        <field name="name">stylehub.citas.calendar</field>
+        <field name="model">stylehub.citas</field>
+        <field name="arch" type="xml">
+            <calendar string="Citas"
+                      date_start="inicio_fecha_hora"
+                      date_stop="fin_fecha_hora"
+                      color="estilista_id"
+                      mode="month">
+                <field name="cliente_id"/>
+                <field name="estilista_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- vista kanban: citas -->
+    <record id="view_stylehub_citas_kanban" model="ir.ui.view">
+        <field name="name">stylehub.citas.kanban</field>
+        <field name="model">stylehub.citas</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_card">
+                            <div class="o_kanban_record_title">
+                                <strong><field name="cita"/></strong>
+                            </div>
+                            <div>
+                                <field name="cliente_id"/>
+                            </div>
+                            <div>
+                                <field name="estilista_id"/>
+                            </div>
+                            <div>
+                                <field name="inicio_fecha_hora"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>

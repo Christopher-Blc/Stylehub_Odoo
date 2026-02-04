@@ -39,4 +39,13 @@
               parent="menu_stylehub_clientes_root"
               action="action_stylehub_clientes" sequence="10"/>
 
+    <!-- citas -->
+    <menuitem id="menu_stylehub_citas_root" name="Citas"
+          parent="menu_stylehub_root" sequence="20"/>
+
+    <menuitem id="menu_stylehub_citas" name="Gestión de citas"
+          parent="menu_stylehub_citas_root"
+          action="action_stylehub_citas" sequence="10"/>
+
+
 </odoo>
