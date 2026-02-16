@@ -8,4 +8,37 @@
         <field name="context">{'default_is_company': False, 'default_es_cliente_peluqueria': True}</field>
     </record>
 
+    <!-- List view with VIP column -->
+    <record id="view_partner_list_stylehub" model="ir.ui.view">
+        <field name="name">res.partner.list.stylehub</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="stylehub_es_vip" string="VIP"/>
+            </list>
+        </field>
+
+    </record>
+
+    <!-- heredado de formulario de cliente: campos VIP -->
+    <record id="view_partner_form_stylehub_vip" model="ir.ui.view">
+        <field name="name">res.partner.form.stylehub.vip</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group" position="inside">
+                <group string="StyleHub">
+                    <field name="es_cliente_peluqueria"/>
+                    <field name="stylehub_num_citas_done" readonly="1"/>
+                    <field name="stylehub_es_vip" widget="boolean_toggle" readonly="1"
+                        invisible="stylehub_es_vip == False"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
 </odoo>

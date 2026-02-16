@@ -107,14 +107,13 @@ class StylehubCitas(models.Model):
     @api.constrains("estilista_id", "inicio_fecha_hora", "fin_fecha_hora", "state")
     def _check_solape_estilista(self):
         for cita in self:
-            #si no hay estilista o fechas no hacemos la comprobacion
             if not cita.estilista_id or not cita.inicio_fecha_hora or not cita.fin_fecha_hora:
                 continue
+
+            # solo ignoramos canceladas
             if cita.state == "cancelled":
                 continue
-            if cita.state in ("draft",):
-                continue
-            # buscamos citas del mismo estilista que se solapen en el tiempo
+
             domain = [
                 ("id", "!=", cita.id),
                 ("estilista_id", "=", cita.estilista_id.id),
@@ -122,9 +121,11 @@ class StylehubCitas(models.Model):
                 ("inicio_fecha_hora", "<", cita.fin_fecha_hora),
                 ("fin_fecha_hora", ">", cita.inicio_fecha_hora),
             ]
-            #si encontramos alguna cita que cumple esas condiciones, lanzamos un error
+
             if self.search_count(domain):
                 raise ValidationError("El estilista ya tiene una cita solapada en ese horario.")
+
+
             
 
 

@@ -18,7 +18,7 @@
                 <field name="estilista_id"/>
                 <field name="inicio_fecha_hora"/>
                 <field name="fin_fecha_hora"/>
-                <field name="duracion_total"/>
+                <field name="duracion_total" widget="float_time"/>
                 <field name="precio_total"/>
                 <field name="state"/>
             </list>
@@ -61,7 +61,7 @@
                         <group>
                             <field name="inicio_fecha_hora"/>
                             <field name="fin_fecha_hora" readonly="1"/>
-                            <field name="duracion_total" readonly="1"/>
+                            <field name="duracion_total" readonly="1" widget="float_time"/>
                             <field name="precio_total" readonly="1"/>
                         </group>
                     </group>
@@ -72,7 +72,7 @@
                                 <list editable="bottom" string="Servicios">
                                     <field name="sequence" widget="handle"/>
                                     <field name="servicio_id"/>
-                                    <field name="duracion_horas"/>
+                                    <field name="duracion_horas" widget="float_time"/>
                                     <field name="precio_unitario"/>
                                     <field name="subtotal" readonly="1"/>
                                 </list>

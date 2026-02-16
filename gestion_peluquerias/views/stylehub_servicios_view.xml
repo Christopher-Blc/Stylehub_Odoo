@@ -9,15 +9,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- accion que abre la vista de estilistas -->
-    <record id="action_stylehub_estilistas" model="ir.actions.act_window">
-        <field name="name">Estilistas</field>
-        <field name="res_model">stylehub.estilistas</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    
-
     <!-- Vista de LISTA de Servicios: muestra nombre, precio base, duracion y estado activo -->
     <record id="view_stylehub_servicios_list" model="ir.ui.view">
         <field name="name">stylehub.servicios.list</field>
@@ -43,7 +34,7 @@
                         <group>
                             <field name="nombre"/>
                             <field name="precio_base"/>
-                            <field name="duracion_horas"/>
+                            <field name="duracion_horas" widget="float_time"/>
                             <field name="activo"/>
                         </group>
                         <group>
