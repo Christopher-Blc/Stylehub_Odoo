@@ -18,7 +18,6 @@
                 <field name="stylehub_es_vip" string="VIP"/>
             </list>
         </field>
-
     </record>
 
     <!-- heredado de formulario de cliente: campos VIP -->

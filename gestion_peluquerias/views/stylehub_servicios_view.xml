@@ -1,7 +1,4 @@
 <odoo>
-
-    
-
     <!-- Define la accion que abre la vista de Servicios (lista y formulario) -->
     <record id="action_stylehub_servicios" model="ir.actions.act_window">
         <field name="name">Servicios</field>
@@ -19,11 +16,12 @@
                 <field name="precio_base" width="20"/>
                 <field name="duracion_horas" width="20"/>
                 <field name="activo" width="30"/>
+                <field name="imagen" widget="image" width="50"/>
             </list>
         </field>
     </record>
 
-    <!-- Vista de FORMULARIO de Servicios: permite editar nombre, precio, duración, estado e imagen -->
+    <!-- Vista de form de Servicios: permite editar nombre, precio, duración, estado e imagen -->
     <record id="view_stylehub_servicios_form" model="ir.ui.view">
         <field name="name">stylehub.servicios.form</field>
         <field name="model">stylehub.servicios</field>
@@ -39,7 +37,7 @@
                         </group>
                         <group>
                             <!-- Widget de imagen para mostrar foto del servicio -->
-                            <field name="image_1920" widget="image" class="oe_avatar"/>
+                            <field name="imagen" widget="image" class="oe_avatar"/>
                         </group>
                     </group>
                 </sheet>

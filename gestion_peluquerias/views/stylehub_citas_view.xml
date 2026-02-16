@@ -94,7 +94,8 @@
                       date_start="inicio_fecha_hora"
                       date_stop="fin_fecha_hora"
                       color="estilista_id"
-                      mode="month">
+                      mode="month"
+                      quick_create="false">
                 <field name="cliente_id"/>
                 <field name="estilista_id"/>
                 <field name="state"/>

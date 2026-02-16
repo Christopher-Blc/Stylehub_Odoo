@@ -13,8 +13,9 @@
         <field name="model">stylehub.estilistas</field>
         <field name="arch" type="xml">
             <list string="Estilistas">
-                <field name="nombre"/>
-                <field name="activo"/>
+                <field name="nombre" width="50%"/>
+                <field name="citas_realizadas" width="25%"/>
+                <field name="activo" width="25%"/>
             </list>
         </field>
     </record>
@@ -29,9 +30,10 @@
                     <group>
                         <field name="nombre"/>
                         <field name="activo"/>
+                        <field name="citas_realizadas"/>
                     </group>
 
-                    <!-- Ver sus citas desde aqui -->
+                    <!-- ver las citas de un estiliosta  -->
                     <group string="Citas">
                         <field name="cita_ids" readonly="1">
                             <list>

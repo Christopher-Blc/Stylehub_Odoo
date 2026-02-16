@@ -6,7 +6,7 @@
     <!-- Desplegable catalogo -->
     <menuitem id="menu_stylehub_catalogo" name="Catalogo"
               parent="menu_stylehub_root"
-              sequence="10"/>
+              sequence="20"/>
 
     <!-- texto "servicios" en el desplegabe" -->
     <menuitem id="menu_stylehub_servicios_root" name="Servicios"
@@ -41,7 +41,7 @@
 
     <!-- citas -->
     <menuitem id="menu_stylehub_citas_root" name="Citas"
-          parent="menu_stylehub_root" sequence="20"/>
+          parent="menu_stylehub_root" sequence="10"/>
 
     <menuitem id="menu_stylehub_citas" name="Gestión de citas"
           parent="menu_stylehub_citas_root"

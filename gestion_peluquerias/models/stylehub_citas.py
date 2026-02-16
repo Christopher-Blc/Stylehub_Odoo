@@ -125,6 +125,17 @@ class StylehubCitas(models.Model):
             if self.search_count(domain):
                 raise ValidationError("El estilista ya tiene una cita solapada en ese horario.")
 
+    @api.constrains("inicio_fecha_hora")
+    def _check_no_citas_antes_hoy(self):
+        for cita in self:
+            if not cita.inicio_fecha_hora:
+                continue
+
+            fecha_cita = fields.Datetime.context_timestamp(cita, cita.inicio_fecha_hora).date()
+            fecha_hoy = fields.Date.context_today(cita)
+            if fecha_cita < fecha_hoy:
+                raise ValidationError("No se pueden crear citas con fecha anterior a hoy.")
+
 
             
 

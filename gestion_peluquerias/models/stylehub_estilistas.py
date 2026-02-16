@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class stylehubEstilistas(models.Model):
 
@@ -14,5 +14,13 @@ class stylehubEstilistas(models.Model):
         inverse_name="estilista_id",
         string="Citas"
     )
+    citas_realizadas = fields.Integer(string="Citas Realizadas", compute="_compute_citas_realizadas")
 
-
+    @api.depends("cita_ids")
+    def _compute_citas_realizadas(self):
+        Cita = self.env["stylehub.citas"]
+        for partner in self:
+            partner.citas_realizadas = Cita.search_count([
+                ("estilista_id", "=", partner.id),
+                ("state", "=", "done"),
+            ])

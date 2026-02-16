@@ -11,7 +11,7 @@ class StylehubServicios(models.Model):
     precio_base = fields.Float(string="Precio base", required=True)
     #se usa en el modelo de citas linea para guardar la duracion de cada servicio
     duracion_horas = fields.Float(string="Duracion (horas)", default=0.5, required=True)
-    image_1920 = fields.Image(string="Imagen")
+    imagen = fields.Image(string="Imagen")
     # para ocultar el servicio sin tener que borrarlo
     activo = fields.Boolean(string="Activo", default=True)
 
