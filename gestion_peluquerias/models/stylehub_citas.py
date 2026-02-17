@@ -9,7 +9,7 @@ class StylehubCitas(models.Model):
     _description = "Citas de clientes para servicios de peluquería."
     _rec_name = "cita"  # para que salga un nombre legible en vez de stylehub.citas 1
 
-    cita = fields.Char(string="Cita", readonly=True , compute="_compute_cita_nombre")#nombre de la cita (en teoria nombre y fecha)
+    cita = fields.Char(string="Cita", readonly=True , compute="_compute_cita_nombre")#nombre de la cita ( nombre y fecha)
     state = fields.Selection(
 
         [
@@ -28,7 +28,8 @@ class StylehubCitas(models.Model):
         "res.partner",
         string="Cliente",
         required=True,
-        domain=[("is_company", "=", False), ("es_cliente_peluqueria", "=", True)],
+        #para que solo muestre clientes que no sean companies
+        domain=[("is_company", "=", False), ("es_cliente_peluqueria", "=", True)], 
     )
 
     estilista_id = fields.Many2one(
@@ -107,6 +108,7 @@ class StylehubCitas(models.Model):
     @api.constrains("estilista_id", "inicio_fecha_hora", "fin_fecha_hora", "state")
     def _check_solape_estilista(self):
         for cita in self:
+            #si faltan datos , no sigue
             if not cita.estilista_id or not cita.inicio_fecha_hora or not cita.fin_fecha_hora:
                 continue
 

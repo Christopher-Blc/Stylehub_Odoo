@@ -15,6 +15,7 @@ class stylehubEstilistas(models.Model):
         string="Citas"
     )
     citas_realizadas = fields.Integer(string="Citas Realizadas", compute="_compute_citas_realizadas")
+    imagen = fields.Image(string="Imagen")
 
     @api.depends("cita_ids")
     def _compute_citas_realizadas(self):

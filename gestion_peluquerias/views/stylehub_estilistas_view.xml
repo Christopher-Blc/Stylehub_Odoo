@@ -16,6 +16,7 @@
                 <field name="nombre" width="50%"/>
                 <field name="citas_realizadas" width="25%"/>
                 <field name="activo" width="25%"/>
+                <field name="imagen" widget="image" class="oe_avatar" width="50"/>
             </list>
         </field>
     </record>
@@ -31,6 +32,9 @@
                         <field name="nombre"/>
                         <field name="activo"/>
                         <field name="citas_realizadas"/>
+                    </group>
+                    <group>
+                        <field name="imagen" widget="image" class="oe_avatar"/>
                     </group>
 
                     <!-- ver las citas de un estiliosta  -->
